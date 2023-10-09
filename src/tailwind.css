@@ -5,7 +5,7 @@
 
 .input{
     @apply bg-white border-[.5px] border-gray-200 
-    rounded-[5px] h-[6.5vh] w-[90vw] pl-[3vw]
+    rounded-[5px] h-[6.5vh] w-[80vw] pl-[3vw] lg:w-[20vw] lg:pl-[1.5vw]
 }
 
 .register-docs{
@@ -14,45 +14,77 @@
 
 .header-text{
     @apply  font-bold text-[18px] cursor-pointer 
-    hover:underline text-[#4088CB] relative left-[30vw]
+    hover:underline text-[#4088CB] relative right-[2vw]
 }
 
 .icon{
-    @apply text-[#6F6F6F] cursor-pointer hover:text-black
+    @apply text-[#6F6F6F] cursor-pointer hover:text-black lg:text-[16px]
 }
 
 .password-icon{
-    @apply cursor-pointer text-[#9d9b9b] relative top-[-4vh] left-[82vw]
+    @apply cursor-pointer text-[#9d9b9b] relative top-[-4vh] 
+    left-[72vw] lg:left-[18vw] lg:top-[-4.3vh] lg:text-[18px]
 }
 
 .icons-case{
     @apply flex items-center gap-[3vw] border-[1px] p-[1.5vw] rounded-[2vw]
+    lg:h-[1vh] lg:rounded-[1vw] lg:p-[1vw] lg:border-[2px]
+    lg:font-bold
 }
 
 .button{
-    @apply w-[90vw] h-[5vh] text-[18px] font-bold 
-    rounded-[10vw] active:scale-[.98]
+    @apply w-[80vw] h-[5vh] text-[18px] font-bold 
+    rounded-[10vw] active:scale-[.98] lg:w-[20vw]
+    relative
 }
 
 .post-button{
     @apply w-[85vw] h-[5vh] text-[18px] font-bold 
-    rounded-[2vw] active:scale-[.98] mt-[4vh] text-white 
-    bg-gradient-to-r  from-[#FF6489] to-[#F9B24E]
+    rounded-[2vw] active:scale-[.98] mt-[3vh] text-white 
+    bg-gradient-to-r  from-[#FF6489] to-[#F9B24E] 
+    lg:w-[30vw] relative 
 }
+
+.edit-button{
+    @apply w-[85vw] h-[5vh] text-[18px] font-bold 
+    rounded-[2vw] active:scale-[.98] mt-[2vh] text-white 
+    bg-gradient-to-r  from-[#FF6489] to-[#F9B24E]
+    flex items-center justify-center lg:w-[30vw]
+}
+
 
 .back-button{
     @apply  flex items-center gap-[1vw] text-[13px] 
     ml-[1vw] pb-2 hover:underline cursor-pointer
+    lg:text-[16px] relative lg:right-[13vw] lg:gap-[.5vw]
 }
 
-.post-box{
+.box{
     @apply w-[85vw] flex flex-col p-[3vw]
-    rounded-[2.5vw] border-[#E0E0E0] border-[1.5px] cursor-pointer
+    rounded-[2.5vw] border-[#E0E0E0] border-[1.5px] 
+    lg:w-[35vw] lg:bg-white lg:rounded-[1vw] lg:p-[2vw]
 }
 
-.comment-box{
-    @apply w-[85vw] flex flex-col p-[3vw]
-    rounded-[2.5vw] border-[#E0E0E0] border-[1.5px] cursor-pointer
+.container{
+    @apply mt-[5vh] flex flex-col font-sans text-[16px] items-center 
+    lg:bg-[#EBEBEB] lg:p-8 lg:w-[40vw] lg:m-auto
+}
+
+.post-container{
+    @apply mt-[3vh] flex flex-col items-center gap-[1.5vh] 
+    lg:bg-[#EBEBEB] lg:w-[40vw] lg:m-auto lg:p-8  lg:min-h-[57.2vh]
 }
 
 
+.form-container{
+    @apply lg:relative lg:bg-gray-300 
+    lg:w-[25vw] lg:h-[100vh] flex flex-col items-center 
+}
+
+.check-item{
+    @apply text-[14px] cursor-auto
+}
+
+.color-button{
+    @apply duration-75 lg:text-[30px]
+}
