@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+
 import { Login } from "../pages/login";
 import { Forum } from "../pages/forum";
 import { PostPage } from "../pages/post"
 import { Signup } from "../pages/signup";
+import { useEffect } from "react";
 import { Settings } from "../pages/settings";
-import { NotFound } from "../pages/notFound";
 import { DeleteAccount } from "../pages/delete";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getPosts } from "../assets/scripts/Posts/GetPostsRequest";
@@ -15,23 +15,23 @@ import { getComments } from "../assets/scripts/Comments/GetCommentsRequest";
 export default function Router() {
 
 
-    const [user, setUser, posts, setPosts, comments, setComments, textArea, setTextArea] = states()
-    const token = user.token
-
-    useEffect(() => { getUserState(setUser) }, [])
+    const [user, setUser, posts, setPosts, comments, setComments, textArea, setTextArea, isLoading, setIsLoading] = states()
 
     const reversedPosts = [...posts].reverse()
     const urlsList = reversedPosts.map(post => post.id.slice(0, 8))
 
-    useEffect(() => {
+    useEffect(() => { getUserState(setUser) }, [user.username])
+
+     useEffect(() => {
         if (user.isLogged) {
             getPosts("", user.token, setPosts)
             getComments("", user.token, setComments)
         }
-    }, [token]
-
+    }, [user.token]
     )
-    const content = [user, setUser, posts, setPosts, textArea, setTextArea, comments, setComments]
+
+    const content = [user, setUser, posts, setPosts, textArea, setTextArea, comments, setComments, isLoading, setIsLoading]
+    const userContent = [user, setUser, isLoading, setIsLoading]
 
     return (
         <BrowserRouter>
@@ -40,18 +40,20 @@ export default function Router() {
                 <Route path="/" element={
                     !user.isLogged ?
                         <Login
-                            setUser={setUser} />
+                            content={userContent}
+                        />
                         :
                         <Forum
                             content={content}
                             reversedPosts={reversedPosts}
+
                         />}
                 />
 
                 <Route path="/signup" element={
                     !user.isLogged ?
                         <Signup
-                            content={content} />
+                            content={userContent} />
                         :
                         <Forum
                             content={content}
@@ -73,7 +75,6 @@ export default function Router() {
                             path={`/forum/post/${url}`}
                             element={
                                 <PostPage
-                                    key={url}
                                     url={url}
                                     content={content}
                                 />

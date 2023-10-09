@@ -17,9 +17,24 @@ export const states = () => {
     const [textArea, setTextArea] = useState({ post: "", comment: "" })
     const [posts, setPosts] = useState([])
     const [comments, setComments] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
-    return [user, setUser, posts, setPosts, comments, setComments, textArea, setTextArea]
+    return [user, setUser, posts, setPosts, comments, setComments, textArea, setTextArea, isLoading, setIsLoading]
 
+}
+
+export const onEnter = (e, fn) => {
+    if (e.key === 'Enter') {
+         fn()
+    }
+};
+
+export const editingContent = () => {
+
+    const [editing, setEditing] = useState(false)
+    const [content, setContent] = useState("")
+
+    return [editing, setEditing, content, setContent]
 }
 
 export const getUserState = (setState) => {
@@ -70,3 +85,17 @@ export const delPost = (request, id, token, array, setArray, navigate) => {
     request(id, token, array, setArray).then(goToForum(navigate))
 
 }
+
+export const checkData = (mail, userMail, setState) => {
+    if (mail === userMail) {
+        setState(1)
+    } else {
+        alert("Email inválido, insira o relativo a sua conta.")
+    }
+}
+
+export const edit = (request, id, token, form, setState) => {
+    request(id, token, form, setState)
+}
+
+export const BASE_URL = "https://labeddit-api-0ek7.onrender.com"
